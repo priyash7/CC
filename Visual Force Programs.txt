@@ -1,0 +1,83 @@
+# Visual Force Programs
+1. To get the account summary
+
+ - click setup
+ - click developer console
+ - click file -> new -> visual force page
+
+Program: 
+
+<apex:page standardController="Account">
+    <apex:pageBlock title="Account Summary">
+   		<apex:pageBlockSection >
+        	<apex:detail relatedList="false"/>
+            <apex:relatedList list="contacts"/>
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+</apex:page>
+
+2. To edit the account details
+
+# Procedure is same
+
+Program: 
+
+<apex:page standardController="Account">
+    <apex:form >
+    	<apex:pageBlock title="Edit Account">
+        	<apex:pageBlockSection >
+            	<apex:inputField value="{! Account.Name}"/>
+                <apex:inputField value="{! Account.Phone}"/>
+                <apex:inputField value="{! Account.Industry}"/>
+                <apex:inputField value="{! Account.AnnualRevenue}"/>
+            </apex:pageBlockSection>
+            <apex:pageBlockButtons >
+            	<apex:commandButton action="{! save}" value="Savelabel"/>
+            </apex:pageBlockButtons>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+
+3.Random details
+
+Program:
+
+# Procedure is same
+
+<apex:page standardController="Account">
+    <apex:pageBlock title="User Details">
+    	<apex:pageBlockSection title="Expand">
+            {!$User.FirstName }{!$User.LastName }
+            ({!$User.Username})
+        </apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:pageBlock title="Morning Session">
+    	<apex:pageBlockSection title="Expressions" columns="1">
+            {! $User.FirstName & ' ' & $User.LastName }
+            <p>The year today is {!YEAR(TODAY())}</p>
+            <p>Tomorrow will be day number {!DAY(TODAY() + 1) }</p>
+            <p>Let's find a maximum: {!MAX(1,2,3,4,5,6,85,4,3,2,1)}</p>
+            <p>The square root of 81 is {!SQRT(81)}</p>
+            <p>Is it true? {!CONTAINS('salesforce.com','force.com')}</p>
+            <p> {!IF(CONTAINS('salesforce.com','force.com'),
+                'Yes','No')}</p>
+            <p>{!IF(DAY(TODAY()) < 4,
+                'Before the 4th' , 'The 4th or after')}</p>
+      	</apex:pageBlockSection>
+    </apex:pageBlock>
+    <apex:pageBlock title="Afternoon Session">
+        <apex:pageBlockSection title="Account Summary">
+            Name: {!Account.Name } <br/>
+            Phone: {!Account.Phone } <br/>
+            Industry: {!Account.Industry } <br/>
+            Revenue: {!Account.AnnualRevenue } <br/>
+        </apex:pageBlockSection>    
+    </apex:pageBlock> 
+    <apex:pageBlock title="Contacts">
+        <apex:pageBlockTable value="{! Account.contacts}" var="contact">
+            <apex:column value="{!contact.Name}"/>
+            <apex:column value="{!contact.Title}"/>
+            <apex:column value="{!contact.Phone}"/>
+        </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>
