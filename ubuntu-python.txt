@@ -1,0 +1,8 @@
+Terminal> sudo apt-get install python-setuptools python-pip mercurial
+Terminal> sudo pip install numpy sympy scipy nose pytest
+Terminal> sudo apt-get install python-matplotlib spyder
+Terminal> sudo pip install ipython --upgrade
+Terminal> sudo pip install tornado --upgrade
+Terminal> sudo pip install pyzmq --upgrade
+Terminal> sudo pip install -e \ 
+          git+https://github.com/hplgit/scitools.git#egg=scitools
